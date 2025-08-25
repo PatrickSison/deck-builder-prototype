@@ -11,5 +11,11 @@ config_version=5
 [application]
 
 config/name="Deck Builder Prototype"
+run/main_scene="uid://bakb0jlvuhcsp"
 config/features=PackedStringArray("4.4", "Forward Plus")
 config/icon="res://icon.svg"
+
+[autoload]
+
+Events="*res://global/events.gd"
+SfxPlayer="*res://global/sfx_player.tscn"
