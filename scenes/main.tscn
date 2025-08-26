@@ -4,7 +4,7 @@
 
 [node name="Main" type="Node2D"]
 
-[node name="Wp1" type="Sprite2D" parent="."]
+[node name="Background" type="Sprite2D" parent="."]
 position = Vector2(575, 326)
 scale = Vector2(0.227778, 0.227778)
 texture = ExtResource("1_o5qli")
