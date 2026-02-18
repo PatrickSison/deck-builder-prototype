@@ -1,10 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://bakb0jlvuhcsp"]
 
-[ext_resource type="Texture2D" uid="uid://dlckewxkhxvn5" path="res://assets/wp1.png" id="1_o5qli"]
+[ext_resource type="Script" path="res://scenes/main.gd" id="1_main"]
 
 [node name="Main" type="Node2D"]
-
-[node name="Background" type="Sprite2D" parent="."]
-position = Vector2(575, 326)
-scale = Vector2(0.227778, 0.227778)
-texture = ExtResource("1_o5qli")
+script = ExtResource("1_main")
