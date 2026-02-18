@@ -1,3 +1,6 @@
-[gd_scene format=3 uid="uid://c3wevvxoae352"]
+[gd_scene load_steps=2 format=3 uid="uid://c3wevvxoae352"]
 
-[node name="SfxPlayer" type="Node2D"]
+[ext_resource type="Script" path="res://global/sfx_player.gd" id="1_sfx"]
+
+[node name="SfxPlayer" type="Node"]
+script = ExtResource("1_sfx")

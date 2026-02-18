@@ -1,31 +1,43 @@
-class_name Card extends Resource
+class_name CardData
+extends Resource
 
-enum Type {ATTACK, SKILL, POWER}
-enum Target {SELF, SINGLE_ENEMY, ALL_ENEMIES, EVERYONE}
+## Template resource for defining a card. Create .tres files from this class
+## to define individual cards for each character.
 
-@export_group("Card Attributes")
+enum Type { ATTACK, SKILL, POWER }
+enum Target { SELF, SINGLE_ENEMY, ALL_ENEMIES, EVERYONE }
+
+@export_group("Card Identity")
 @export var id: String
-@export var type: Type
-@export var target: Target
-@export var cost: int
+@export var card_name: String
+@export var type: Type = Type.ATTACK
+
+@export_group("Card Mechanics")
+@export var target: Target = Target.SINGLE_ENEMY
+@export var cost: int = 1
+@export var effects: Array[Resource] = []  ## Array of Effect subclass instances
+@export var exhaust: bool = false           ## If true, card is removed from deck on use
 
 @export_group("Card Visuals")
-@export var icon: Texture
+@export var icon: Texture2D
 @export_multiline var description: String
 @export var sound: AudioStream
 
-func _get_targets(targets: Array[Node]) -> Array[Node]:
-	if not targets:
-		return []
-		
-	var tree:= targets[0].get_tree()
-	
-	match target:
-		Target.SELF:
-			return tree.get_nodes_in_group("player")
-		Target.ALL_ENEMIES:
-			return tree.get_nodes_in_group("enemeis")
-		Target.EVERYONE:
-			return tree.get_nodes_in_group("player") + tree.get_nodes_in_group("enemies")
-		_:
-			return []
+
+func execute(targets: Array[Node]) -> void:
+	## Runs all effects on the given targets.
+	for effect in effects:
+		(effect as Effect).execute(targets)
+
+
+func get_type_label() -> String:
+	match type:
+		Type.ATTACK: return "Attack"
+		Type.SKILL:  return "Skill"
+		Type.POWER:  return "Power"
+	return ""
+
+
+func requires_target() -> bool:
+	## Returns true if the player must click/drag onto a specific enemy.
+	return target == Target.SINGLE_ENEMY

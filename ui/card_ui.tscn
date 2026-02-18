@@ -1,0 +1,64 @@
+[gd_scene load_steps=2 format=3 uid="uid://bqcardui001"]
+
+[ext_resource type="Script" path="res://ui/card_ui.gd" id="1_card"]
+
+[node name="CardUI" type="Control"]
+custom_minimum_size = Vector2(120, 180)
+script = ExtResource("1_card")
+
+[node name="Panel" type="Panel" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 0.0
+offset_bottom = 0.0
+
+[node name="MarginContainer" type="MarginContainer" parent="Panel"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+theme_override_constants/margin_left = 6
+theme_override_constants/margin_top = 6
+theme_override_constants/margin_right = 6
+theme_override_constants/margin_bottom = 6
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Panel/MarginContainer"]
+layout_mode = 2
+
+[node name="TopRow" type="HBoxContainer" parent="Panel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="CostLabel" type="Label" parent="Panel/MarginContainer/VBoxContainer/TopRow"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "1"
+theme_override_font_sizes/font_size = 16
+horizontal_alignment = 1
+
+[node name="TypeLabel" type="Label" parent="Panel/MarginContainer/VBoxContainer/TopRow"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Attack"
+theme_override_font_sizes/font_size = 10
+horizontal_alignment = 2
+
+[node name="IconRect" type="TextureRect" parent="Panel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+custom_minimum_size = Vector2(0, 60)
+expand_mode = 1
+stretch_mode = 6
+
+[node name="NameLabel" type="Label" parent="Panel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Card Name"
+theme_override_font_sizes/font_size = 13
+horizontal_alignment = 1
+autowrap_mode = 2
+
+[node name="Description" type="Label" parent="Panel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Card description goes here."
+theme_override_font_sizes/font_size = 10
+horizontal_alignment = 1
+autowrap_mode = 2
+size_flags_vertical = 3

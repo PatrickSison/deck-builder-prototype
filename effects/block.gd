@@ -1,11 +1,17 @@
-class_name Block extends Effect
+class_name Block
+extends Effect
 
-var amount:= 0
+## Grants block to each target. Respects the target's Dexterity stat.
+
+@export var amount: int = 5
+
 
 func execute(targets: Array[Node]) -> void:
 	for target in targets:
 		if not target:
 			continue
-		if target is Enemy or target is Player:
-			target.stats.block += amount
-			SfxPlayer.play(sound)
+		if target.has_method("apply_block"):
+			target.apply_block(amount)
+
+	if sound:
+		SfxPlayer.play(sound)
